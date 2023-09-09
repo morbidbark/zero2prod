@@ -33,5 +33,9 @@ jobs:
         run: SKIP_DOCKER=1 ./scripts/init_db.sh
       - name: Build
         run: cargo build --verbose
+      - name: Run linter
+        run: cargo clippy
+      - name: Run formatter
+        run: cargo fmt -- --check
       - name: Run tests
         run: cargo test --verbose
