@@ -23,6 +23,12 @@ jobs:
           - 5432:5432
     steps:
       - uses: actions/checkout@v3
+      - name: Install sqlx-cli
+        run:
+          cargo install sqlx-cli
+          --version=0.6.3
+          --features "rustls,postgres"
+          --no-default-features
       - name: Migrate database
         run: SKIP_DOCKER=1 ./scripts/init_db.sh
       - name: Build
